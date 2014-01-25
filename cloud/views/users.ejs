@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <% include templates/headertemplate.ejs %>
+  </head>
+  <body style="">
+        <!-- Past snapshots-->
+        <div class="container">
+        <!-- Fixed navbar -->
+        <% include templates/navbar.ejs %>
+        <div class="jumbotron" id="jumbo">
+          <h1>Registered cards</h1>
+        <div class="panel panel-default">
+        <a data-toggle="collapse" data-parent="#accordion" href="#cards">
+          <div class="panel-heading" class="panel_heading">
+            <h4 class="panel-title">
+                Registered cards:
+            </h4>
+          </div>
+        </a>
+          <div id="cards" class="panel-collapse collapse">
+            <div class="panel-body">
+              <div class="panel panel-default">
+              <% usercards.forEach(function(usercard, i, array) {%>
+
+              
+                <a data-toggle="collapse" data-parent="#accordion" href="#card<%=i%>">
+                  <div class="panel-heading" class="panel_heading">
+                    <h4 class="panel-title">
+                        <%=usercard.get('user').get('email') %>, <%=usercard.get("card").get("name") %>,
+                        <%=usercard.get("exp")%>
+                    </h4>
+                  </div>
+                </a>
+                <div id="card<%=i%>" class="panel-collapse collapse">
+                  <div class="panel-body">
+                    
+                    <a class="navbar-brand" href="/usercard/<%=usercard.id%>"><img src="<%=usercard.get("url")%>" height="100"></a>
+                  </div>
+
+                </div>
+              <%});  %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+        <!-- End past snapshots-->
+
+        <!-- Site footer -->
+        <% include templates/footer.ejs%>
+
+      </div> <!-- /container -->
+
+
+      <!-- Bootstrap core JavaScript
+      ================================================== -->
+      <!-- Placed at the end of the document so the pages load faster -->
+
+
+  </body>
+  <script>
+      $('#modal-form-submit').on('click', function(e){
+      // We don't want this to act as a link so cancel the link action
+      e.preventDefault();
+
+      // Find form and submit it
+      $('#modal-form').submit();
+      });
+
+
+  </script>
+</html>

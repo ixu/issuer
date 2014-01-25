@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <% include templates/headertemplate.ejs %>
+  </head>
+  <body style="">
+      <div class="container">
+      <!-- Fixed navbar -->
+      <% include templates/navbar.ejs %>
+        <!-- Jumbotron -->
+
+        <div class="jumbotron" id="jumbo">
+          <h4>Number:</h4>
+          <p class="lead"><%=usercard.get('number')%></p>
+          <h4>Expiration date:</h4>
+          <p class="lead"><%=usercard.get('exp')%></p>
+          <p class="lead"><img src="<%=usercard.get('url')%>" height=100></p>
+
+
+      </div>
+
+      <% include templates/footer.ejs%>
+
+
+      </div> <!-- /container -->
+
+
+      <!-- Bootstrap core JavaScript
+      ================================================== -->
+      <!-- Placed at the end of the document so the pages load faster -->
+
+
+  </body>
+  <script>
+      $('#modal-form-submit').on('click', function(e){
+      // We don't want this to act as a link so cancel the link action
+      e.preventDefault();
+
+      // Find form and submit it
+      $('#modal-form').submit();
+      });
+ 
+
+  </script>
+</html>

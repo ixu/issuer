@@ -1,0 +1,111 @@
+#snapshot_form {
+  margin-top: 20px;
+}
+#upcoming_list {
+  position: fixed;
+  top: 50px;
+  right: 10px;
+}
+.panel_heading {
+  background-color: #CBCBCB;
+  border-color: black;
+  border-radius: 5px;
+}
+#jumbo {
+  width: 100% !important;
+}
+
+input[type=radio] {
+  display: inline;
+}
+.header {
+  font-size: 100px;
+  margin-top: -90px;
+  margin-bottom: 50px;
+}
+#fields {
+  margin-left: 200px;
+  width: 300px;
+  text-align: left;
+}
+#background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;position: absolute;
+  background-image: url(http://www.outsidethebeltway.com/wp-content/uploads/2013/06/Credit-Cards.jpg);
+  background-repeat:no-repeat;
+  background-size:cover;
+  -webkit-filter: blur(5px);
+  z-index: -1;
+}
+
+#login {
+  text-align: center;
+  width: 50%;
+  height: 500px;
+  position: absolute;
+  left: 34%;
+  top: 50%;
+  margin-left: -150px;
+  margin-top: -150px;
+}
+#signin, #signup {
+  display: inline-block;
+  width:45%;
+}
+#signin {
+  margin-bottom: -5px;
+}
+input {
+  z-index: 1;
+  width: 200px;
+  background-color: transparent;
+  border: none;
+  border-bottom: 1px solid;
+}
+.btn-sample {
+  color: #FFFFFF;
+  background-color: #a5a5a5;
+  border-color: #130269;
+}
+
+.btn-sample:hover,
+.btn-sample:focus,
+.btn-sample:active,
+.btn-sample.active,
+.open .dropdown-toggle.btn-sample {
+  color: #FFFFFF;
+  background-color: #a5a5a5;
+  border-color: #130269;
+}
+
+.btn-sample:active,
+.btn-sample.active,
+.open .dropdown-toggle.btn-sample {
+  background-image: none;
+}
+
+.btn-sample.disabled,
+.btn-sample[disabled],
+fieldset[disabled] .btn-sample,
+.btn-sample.disabled:hover,
+.btn-sample[disabled]:hover,
+fieldset[disabled] .btn-sample:hover,
+.btn-sample.disabled:focus,
+.btn-sample[disabled]:focus,
+fieldset[disabled] .btn-sample:focus,
+.btn-sample.disabled:active,
+.btn-sample[disabled]:active,
+fieldset[disabled] .btn-sample:active,
+.btn-sample.disabled.active,
+.btn-sample[disabled].active,
+fieldset[disabled] .btn-sample.active {
+  background-color: #611BBD;
+}
+
+.btn-sample .badge {
+  color: #611BBD;
+  background-color: #FFFFFF;
+}

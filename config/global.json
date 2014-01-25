@@ -1,0 +1,14 @@
+{
+    "applications": {
+        "Wallet": {
+            "applicationId": "8bn3H9oUBrS4B5IiK53q8x3ZrDMlGPWwf55r0mlf", 
+            "masterKey": "VYCSxlqUBQRhhjp05BBhHoYacXPNi5vriK1z4Ndk"
+        }, 
+        "_default": {
+            "link": "Wallet"
+        }
+    }, 
+    "global": {
+        "parseVersion": "1.2.15"
+    }
+}

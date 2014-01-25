@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <% include templates/headertemplate.ejs %>
+  </head>
+  <body>
+  <div id="background"></div>
+  <div id="login">
+    <h1 class="header">Plastick</h1>
+    <div id="fields">
+      <form method="POST" action="/login">
+        <input type="text" id="email" name="email"></input>
+        <label for="text">Email</label>
+        <br>
+        <input type="password" id="password" name="password"></input>
+        <label for="text">Password</label>
+        <br>
+        <button class="btn btn-lg btn-sample btn-block signin" type="submit" name="action" id="signin" value="login">Sign in</button>
+        <button class="btn btn-lg btn-sample btn-block" type="submit" name="action" value="signup" id="signup">Sign up</button>
+      </form>
+    </div>
+  </div>
+  </body>
+</html>
+<script>
+$(document).ready(function() {
+
+});
+</script>

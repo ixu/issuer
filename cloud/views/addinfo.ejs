@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <% include templates/headertemplate.ejs %>
+    <% include templates/qrheader.ejs %>
+
+</head>
+  <body>
+    <% include templates/navbar.ejs %>
+    <div class="container">
+      <div class="page-header" style="margin-top: 100px;">
+          <h1>User</h1>
+        </div>
+        
+        <form id="qr" action="/card" method="post">
+          <input type="text" name="exp" placeholder="Expiration date"/><br>
+          <input type="text" name="number" placeholder="Card number"/><br><hr>
+          <video autoplay width="320" height="240" ></video><br>
+          <img src=""><br>
+        <canvas id="qr-canvas" width="640" height="480" style="display:none"></canvas><br><hr>
+          <input name="userId" id="userid" style="display:none" value="<%=userId%>">
+          <input name="card" id="card" style="display:none" value="<%=cardId%>">
+          <input name="url" id="url" style="display:none" value="">
+          <input id="qrsubmit" type="submit">
+        </form>
+    <% include templates/footer.ejs%>    
+    </div>
+
+</body>
+
+<script>
+
+$(function(){
+  Parse.initialize('8bn3H9oUBrS4B5IiK53q8x3ZrDMlGPWwf55r0mlf', 'tFpRIdBQk8CHR97tGm7vr3squx3TrTjMUyBw6wIZ');
+
+  var canvas = document.querySelector('canvas');
+  canvas.style.width = "640px";
+  canvas.style.width = "480px";
+  var ctx = canvas.getContext('2d');
+  var localMediaStream = null;
+  var video = document.querySelector('video');
+  var photo;
+
+
+  function snapshot() {
+    if (localMediaStream) {
+      ctx.drawImage(video, 0, 0);
+      // "image/webp" works in Chrome.
+      // Other browsers will fall back to image/png.
+      document.querySelector('img').src = canvas.toDataURL('image/webp');
+      var file = canvas.toDataURL('image/webp').split("base64,")[1];
+      console.log(file);
+      var parseFile = new Parse.File("image.jpg", {base64: file});
+      parseFile.save().then(function(fileObj) {
+        console.log(fileObj);
+        $("#url").val(fileObj.url());
+      });
+
+    }
+  }
+
+  video.addEventListener('click', snapshot,false);
+  /*
+  $('#qrsubmit').submit(function(e){
+    var file = document.querySelector('img').src;
+    var parseFile = new Parse.File(file.name, file);
+    parseFile.save().then(function(fileObj) {
+      console.log(fileObj);
+      $("#url").val(fileObj.url());
+    });
+  });*/
+
+  var vgaConstraints = {
+    video: true
+  };
+  // Not showing vendor prefixes or code that works cross-browser.
+  navigator.webkitGetUserMedia(vgaConstraints, function(stream) {
+    video.src = window.URL.createObjectURL(stream);
+    localMediaStream = stream;
+
+  }, function(a) {});
+
+});
+
+
+
+      $('#modal-form-submit').on('click', function(e){
+      // We don't want this to act as a link so cancel the link action
+      e.preventDefault();
+
+      // Find form and submit it
+      $('#modal-form').submit();
+      });
+
+
+  </script>
+</html>

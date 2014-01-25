@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <% include templates/headertemplate.ejs %>
+  </head>
+  <body style="">
+      <div class="container">
+      <!-- Fixed navbar -->
+      <% include templates/navbar.ejs %>
+        <!-- Jumbotron -->
+
+        <div class="jumbotron" id="jumbo">
+          <h1><%=user.get('email')%></h1>
+          <% console.log(user)%>
+          <p class="lead">
+            <% console.log(userInfo)%>
+            <% if (typeof userInfo!=='undefined' && typeof userInfo.get('gender')!=='undefined') { %>
+              <%= userInfo.get('gender') + ", dob: " + userInfo.get('dob') %>
+            <%}%>
+          </p>
+          <p><a class="btn btn-lg btn-success" href="#" onclick="$('#bbxml').click(); return false;" role="button"><img src="/data/bb.jpg" height="100"></a></p>
+          <form method="POST" action="/bb">
+            <input type="file" class="fileselect" id="bbxml" name="bbxml" accept="xml" style="display:none;"/>
+            <input id="gender" name="gender" style="display:none"/>
+            <input id="dob" name="dob" style="display:none"/>
+            <input type="submit" id="bbsubmit" value="Submit" style="display:none">         
+          </form>
+        </div>
+
+        <div id="upcoming_list">
+          <ul class="list-group">
+            <li class="list-group-item alert alert-success">Upcoming Appointments:</li>
+            <% appointments.forEach(function(appointment) { %>
+            <li class="list-group-item alert alert-warning"><%=appointment.get('date')%>, <%=appointment.get('doctor')%></li>
+            <%});%>
+          </ul>
+        </div>
+        <!-- Past snapshots-->
+        <div class="panel panel-default">
+        <a data-toggle="collapse" data-parent="#accordion" href="#past">
+          <div class="panel-heading" class="panel_heading">
+            <h4 class="panel-title">
+                Past Snapshots
+            </h4>
+          </div>
+        </a>
+          <div id="past" class="panel-collapse collapse">
+            <div class="panel-body">
+              <div class="panel panel-default">
+              <% snapshots.forEach(function(snapshot, i, array) {%>
+
+              
+                <a data-toggle="collapse" data-parent="#accordion" href="#snapshot<%=i%>">
+                  <div class="panel-heading" class="panel_heading">
+                    <h4 class="panel-title">
+                        <%=snapshot.createdAt %>
+                    </h4>
+                  </div>
+                </a>
+                <div id="snapshot<%=i%>" class="panel-collapse collapse">
+                  <div class="panel-body">
+                    <%=snapshot.get('description')%>
+                    <img src="<%=snapshot.get('url')%>" height="50">
+                  </div>
+
+                </div>
+              <%});  %>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- End past snapshots-->
+
+        <!-- Site footer -->
+        <div class="footer">
+          <p>© Visit-to-Visit 2013</p>
+        </div>
+
+      </div> <!-- /container -->
+
+
+      <!-- Bootstrap core JavaScript
+      ================================================== -->
+      <!-- Placed at the end of the document so the pages load faster -->
+
+
+  </body>
+  <script>
+      $('#modal-form-submit').on('click', function(e){
+      // We don't want this to act as a link so cancel the link action
+      e.preventDefault();
+
+      // Find form and submit it
+      $('#modal-form').submit();
+      });
+
+
+  </script>
+</html>

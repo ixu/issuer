@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <% include templates/headertemplate.ejs %>
+  </head>
+  <body style="">
+        <!-- Past snapshots-->
+        <div class="container">
+        <!-- Fixed navbar -->
+        <% include templates/navbar.ejs %>
+        <div class="jumbotron" id="jumbo">
+        <div class="panel panel-default">
+        <a data-toggle="collapse" data-parent="#accordion" href="#cards">
+          <div class="panel-heading" class="panel_heading">
+            <h4 class="panel-title">
+                Cards
+            </h4>
+          </div>
+        </a>
+          <div id="cards" class="panel-collapse collapse">
+            <div class="panel-body">
+              <div class="panel panel-default">
+              <% cards.forEach(function(card, i, array) {%>
+
+              
+                <a data-toggle="collapse" data-parent="#accordion" href="#card<%=i%>">
+                  <div class="panel-heading" class="panel_heading">
+                    <h4 class="panel-title">
+                        <%=card.get('name') %>
+                    </h4>
+                  </div>
+                </a>
+                <div id="card<%=i%>" class="panel-collapse collapse">
+                  <div class="panel-body">
+                    
+                    <a class="navbar-brand" href="/card/<%=card.id%>"><%=card.get('description')%></a>
+                  </div>
+
+                </div>
+              <%});  %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+        <!-- End past snapshots-->
+
+        <!-- Site footer -->
+        <% include templates/footer.ejs%>
+
+      </div> <!-- /container -->
+
+
+      <!-- Bootstrap core JavaScript
+      ================================================== -->
+      <!-- Placed at the end of the document so the pages load faster -->
+
+
+  </body>
+  <script>
+      $('#modal-form-submit').on('click', function(e){
+      // We don't want this to act as a link so cancel the link action
+      e.preventDefault();
+
+      // Find form and submit it
+      $('#modal-form').submit();
+      });
+      var bb;
+      $('#bbxml').bind("change", function(e) {
+        var reader = new FileReader();
+        var text;
+        reader.onload = function(e) {
+          var text = reader.result;
+          bb = BlueButton(text);
+          var gender = bb.demographics().gender;
+          var dob = bb.demographics().dob;
+          $('#gender').val(gender);
+          $('#dob').val(dob);
+          $('#bbsubmit').click();
+
+        }
+        var files = e.target.files || e.dataTransfer.files;
+        var file = files[0];
+        reader.readAsText(file);
+        
+
+      });
+
+  </script>
+</html>
